@@ -1,58 +1,58 @@
-# Investigación: datos que estaban sin fuente
+# Research: data that had no source
 
-Fecha: 15 de noviembre de 2026. Cierra la lista de números que el diseño o el código usaban sin fuente verificada.
+Date: November 15, 2026. Closes the list of numbers that the design or the code used without a verified source.
 
-## Cómo leer este documento
+## How to read this document
 
-| Marca | Significado |
+| Mark | Meaning |
 |---|---|
-| ✅ | Visto en la fuente original (artículo, resumen de PubMed o documento de la NASA) |
-| ⚠️ | Visto solo en un resumen de búsqueda o en una fuente secundaria: abrir el original antes de citarlo en la presentación |
-| ❌ | No existe fuente: es decisión del equipo o hay que quitarlo |
+| ✅ | Seen in the original source (article, PubMed abstract or NASA document) |
+| ⚠️ | Seen only in a search summary or a secondary source: open the original before citing it in the presentation |
+| ❌ | There is no source: it is a team decision or it has to be removed |
 
 ---
 
-## 1. Números que ya tienen fuente
+## 1. Numbers that now have a source
 
-| Dato en el proyecto | Qué dice la fuente | Fuente | Estado |
+| Data in the project | What the source says | Source | Status |
 |---|---|---|---|
-| Factores de Atwater 4 / 9 / 4 kcal/g (proteína, grasa, carbohidrato) | Son los factores generales derivados del trabajo de Atwater; dan una medida satisfactoria en dietas promedio, con límites para alimentos individuales | Merrill y Watt, *Energy Value of Foods: Basis and Derivation*, USDA Agriculture Handbook 74 (1955, rev. 1973) — [copia del USDA](https://ars.usda.gov/ARSUSERFILES/80400535/DATA/CLASSICS/USDA%20HANDBOOK%2074.PDF) | ⚠️ (título y contenido vistos en el resumen; abrir el PDF) |
-| Retraso de 12 min a la Tierra | Marte: de 3 a 22 min de ida según la distancia. Un reporte de JPL da ~25 min de ida y vuelta en promedio, es decir ~12.5 min de ida | [NTRS 20220013418](https://ntrs.nasa.gov/api/citations/20220013418/downloads/ASCEND-Communication%20Delays,%20Disruptions,%20and%20Blackouts%20for%20Crewed%20Mars%20Missions.pdf); [JPL IPN PR 42-237A](https://ipnpr.jpl.nasa.gov/progress_report/42-237/42-237A.pdf) | ⚠️ |
-| Detectar enfermedad por desviación de la línea base personal | Con relojes de consumo, 26 de 32 casos de COVID-19 mostraron alteraciones; 63% se habría detectado antes de los síntomas con alertas por elevación extrema del pulso en reposo respecto a la línea base individual | Mishra et al., *Nat Biomed Eng* 2020 (PubMed) — [DOI](https://doi.org/10.1038/s41551-020-00640-6) | ✅ |
-| Alertas en tiempo real por cambios respecto a la línea base | Alertas en 78% de los casos presintomáticos y asintomáticos, mediana de 3 días antes de los síntomas. También disparan otros eventos (estrés, alcohol, viajes) | Alavi et al., medRxiv 2021 (PubMed, **preprint**) — [DOI](https://doi.org/10.1101/2021.06.13.21258795) | ✅ |
-| Fiebre relativa a la línea base | Fiebre = una lectura oral > 37.8 °C, o repetidas > 37.2 °C, o **aumento > 1.1 °C sobre la línea base** | High et al., guía IDSA, *J Am Geriatr Soc* 2009 — [PubMed 19278394](https://pubmed.ncbi.nlm.nih.gov/19278394/) | ⚠️ (población: adultos mayores en asilos, no astronautas) |
-| Series y repeticiones del ARED | Protocolo Sprint (3 días/semana): 4 series de 12, 8 o 6 repeticiones según el día, la cuarta serie casi al máximo. Control (6 días/semana): sentadilla, peso muerto y elevación de talones diarios; talones 4 × 20; carga al 70% del máximo, +5% por semana | English et al., *npj Microgravity* 2020 — [PMC7434884](https://pmc.ncbi.nlm.nih.gov/articles/PMC7434884) | ✅ |
-| Voto de varias corridas del modelo | Muestrear varias respuestas y quedarse con la mayoría mejora la exactitud (por ejemplo +17.9% en GSM8K) | Wang et al., *Self-Consistency Improves Chain of Thought Reasoning*, ICLR 2023 — [arXiv 2203.11171](https://arxiv.org/abs/2203.11171) | ⚠️ |
-| QT en vuelos largos | Existe un estudio de la NASA sobre el QTc en vuelos cortos y largos; una revisión de 2024 dice que los vuelos largos se asocian con prolongación del QT | D'Aunno et al., *Am J Cardiol* 2003 (PubMed, sin resumen) — [DOI](https://doi.org/10.1016/s0002-9149(02)03259-9); Hussain et al., *Health Sci Rep* 2024 — [DOI](https://doi.org/10.1002/hsr2.2305) | ⚠️ (sin cifras vistas) |
-| Índice de salud de la tripulación | El Integrated Medical Model de la NASA tiene una salida llamada *Crew Health Index* (capacidad funcional de la tripulación), junto con probabilidad de evacuación y de pérdida de vida. No se encontró su fórmula | [NASA IMM](https://www.nasa.gov/general/nasas-integrated-medical-model-imm/) | ⚠️ |
+| Atwater factors 4 / 9 / 4 kcal/g (protein, fat, carbohydrate) | General factors derived from Atwater's work; they give a satisfactory measure for average diets, with limits for individual foods | Merrill and Watt, *Energy Value of Foods: Basis and Derivation*, USDA Agriculture Handbook 74 (1955, rev. 1973) — [USDA copy](https://ars.usda.gov/ARSUSERFILES/80400535/DATA/CLASSICS/USDA%20HANDBOOK%2074.PDF) | ⚠️ (title and contents seen in the summary; open the PDF) |
+| 12-minute delay to Earth | Mars: 3 to 22 minutes one way depending on distance. A JPL report gives ~25 minutes round trip on average, which is ~12.5 minutes one way | [NTRS 20220013418](https://ntrs.nasa.gov/api/citations/20220013418/downloads/ASCEND-Communication%20Delays,%20Disruptions,%20and%20Blackouts%20for%20Crewed%20Mars%20Missions.pdf); [JPL IPN PR 42-237A](https://ipnpr.jpl.nasa.gov/progress_report/42-237/42-237A.pdf) | ⚠️ |
+| Detecting illness from deviation from the personal baseline | With consumer smartwatches, 26 of 32 COVID-19 cases showed changes; 63% could have been detected before symptoms with alerts on extreme rises of resting heart rate relative to the individual baseline | Mishra et al., *Nat Biomed Eng* 2020 (PubMed) — [DOI](https://doi.org/10.1038/s41551-020-00640-6) | ✅ |
+| Real-time alerts on changes from the baseline | Alerts in 78% of presymptomatic and asymptomatic cases, a median of 3 days before symptoms. Other events (stress, alcohol, travel) also trigger them | Alavi et al., medRxiv 2021 (PubMed, **preprint**) — [DOI](https://doi.org/10.1101/2021.06.13.21258795) | ✅ |
+| Fever relative to the baseline | Fever = one oral reading > 37.8 °C, or repeated > 37.2 °C, or a **rise of more than 1.1 °C over the baseline** | High et al., IDSA guideline, *J Am Geriatr Soc* 2009 — [PubMed 19278394](https://pubmed.ncbi.nlm.nih.gov/19278394/) | ⚠️ (population: older adults in long-term care, not astronauts) |
+| ARED sets and repetitions | Sprint protocol (3 days/week): 4 sets of 12, 8 or 6 repetitions depending on the day, the fourth set near maximal. Control (6 days/week): squat, deadlift and heel raises daily; heel raises 4 × 20; load at 70% of the maximum, +5% per week | English et al., *npj Microgravity* 2020 — [PMC7434884](https://pmc.ncbi.nlm.nih.gov/articles/PMC7434884) | ✅ |
+| Voting over several runs of the model | Sampling several answers and keeping the majority improves accuracy (for example +17.9% on GSM8K) | Wang et al., *Self-Consistency Improves Chain of Thought Reasoning*, ICLR 2023 — [arXiv 2203.11171](https://arxiv.org/abs/2203.11171) | ⚠️ |
+| QT interval on long flights | There is a NASA study on QTc in short and long flights; a 2024 review says long flights are associated with QT prolongation | D'Aunno et al., *Am J Cardiol* 2003 (PubMed, no abstract) — [DOI](https://doi.org/10.1016/s0002-9149(02)03259-9); Hussain et al., *Health Sci Rep* 2024 — [DOI](https://doi.org/10.1002/hsr2.2305) | ⚠️ (no figures seen) |
+| Crew health index | NASA's Integrated Medical Model has an output called *Crew Health Index* (functional capacity of the crew), together with the probability of evacuation and of loss of life. Its formula was not found | [NASA IMM](https://www.nasa.gov/general/nasas-integrated-medical-model-imm/) | ⚠️ |
 
-## 2. Qué hacer con cada pendiente de la lista
+## 2. What to do with each pending item
 
-| Pendiente | Conclusión | Acción |
+| Pending item | Conclusion | Action |
 |---|---|---|
-| Índice de salud y puntajes de tripulación (diseño) | La NASA tiene un *Crew Health Index*, pero es la salida de un modelo probabilístico, no un puntaje diario, y su fórmula no es pública | ❌ No inventar un puntaje. Seguir mostrando "parámetros nominales de los que tienen datos" |
-| Riesgo de hueso y músculo en % | Ya documentado en `01` (hueso 1–2%/mes en columna y cadera, OCHMO-TB-030) | ✅ El panel ya lo muestra como estimación, con fuente |
-| ECG en vivo (ritmo sinusal, QTc) | Hay literatura, pero la app no tiene un sensor de ECG | ❌ Dejarlo como "sin dato" |
-| Fases del sueño | En `01`: solo 5 personas en Mir. Requiere polisomnografía o actigrafía | ❌ Dejarlo como "sin dato" |
-| Límite diario de radiación 1.0 mSv | En `01`: la NASA solo tiene límites diarios "en consideración" (<1.3 mSv/día), no aprobados. Lo medido en la EEI es ~0.2–0.5 mSv/día | ❌ No mostrar un límite diario. Usar el límite de carrera (600 mSv) y el de tormenta (250 mSv), como ya hace la app |
-| Horarios sugeridos de comida y ejercicio | Solo hay tiempo asignado (2.5 h/día de ejercicio, 6–7 días) en `01`. No se encontró un horario oficial | ❌ No mostrar horarios |
-| Series y repeticiones del ARED | Fila de arriba (English 2020) | ✅ Se puede mostrar citando el protocolo |
-| Factores de Atwater | Fila de arriba | ✅ Fuente agregada en el código |
-| Valores de las raciones | Son ficticios y están etiquetados así | ❌ Siguen siendo de demostración |
-| Retraso de 12 min | Fila de arriba: 12 min es el promedio aproximado | ✅ |
+| Health index and crew scores (design) | NASA has a *Crew Health Index*, but it is the output of a probabilistic model, not a daily score, and its formula is not public | ❌ Do not invent a score. Keep showing "nominal parameters out of those with data" |
+| Bone and muscle risk in % | Already documented in `01` (bone loss of 1–2% per month in spine and hip, OCHMO-TB-030) | ✅ The simulator shows it as an estimate, with its source |
+| Live ECG (sinus rhythm, QTc) | There is literature, but the app has no ECG sensor | ❌ Leave it as "no data" |
+| Sleep stages | In `01`: only 5 people on Mir. It requires polysomnography or actigraphy | ❌ Leave it as "no data" |
+| 1.0 mSv daily radiation limit | In `01`: NASA only has daily limits "under consideration" (<1.3 mSv/day), not approved. What is measured on the ISS is ~0.2–0.5 mSv/day | ❌ Do not show a daily limit. Use the career limit (600 mSv) and the solar storm limit (250 mSv), as the app already does |
+| Suggested meal and exercise times | `01` only has the allocated time (2.5 h/day of exercise, 6–7 days). No official schedule was found | ❌ Do not show schedules |
+| ARED sets and repetitions | Row above (English 2020) | ✅ Can be shown, citing the protocol |
+| Atwater factors | Row above | ✅ Source added in the code |
+| Ration values | They are fictional and labeled as such | ❌ They remain demo values |
+| 12-minute delay | Row above: 12 minutes is the approximate average | ✅ |
 
-## 3. Decisiones del equipo que siguen sin fuente (y por qué)
+## 3. Team decisions that still have no source (and why)
 
-| Decisión | Valor | Qué respalda el método | Qué no tiene respaldo |
+| Decision | Value | What supports the method | What has no support |
 |---|---|---|---|
-| Alertar por desviación de la línea base personal | 2 desviaciones estándar | Mishra 2020 y Alavi 2021 usan desviaciones respecto a la línea base individual | El "2" y las 5 lecturas mínimas son elección nuestra |
-| Margen mínimo | 5 lpm, 8 ms, 0.3 °C | Evita alertas por diferencias menores a la precisión del sensor | Los tres números. La guía IDSA usa +1.1 °C para fiebre: nuestro 0.3 °C es un **aviso temprano**, no un criterio de fiebre |
-| Días fuera de rango excluidos de la línea base | — | Sin esto una fiebre larga "desaparece" (demostrado en el simulador) | Regla nuestra |
-| Déficit de 3 días para rojo | 3 | — | Decisión nuestra |
-| Propuesta A | 8/10 alta, 6/10 media | Wang 2022 respalda votar varias corridas | Los umbrales, y usar el acuerdo como confianza: no está calibrado |
-| Consulta de seguimiento | máx. 1 | — | Regla de diseño |
-| Línea base del panel | simulada por astronauta | — | No sale de un expediente médico |
+| Alert on deviation from the personal baseline | 2 standard deviations | Mishra 2020 and Alavi 2021 use deviations from the individual baseline | The "2" and the 5 minimum readings are our choice |
+| Minimum margin | 5 bpm, 8 ms, 0.3 °C | Avoids alerts for differences smaller than the sensor's precision | The three numbers. The IDSA guideline uses +1.1 °C for fever: our 0.3 °C is an **early warning**, not a fever criterion |
+| Out-of-range days left out of the baseline | — | Without it a long fever "disappears" (shown in the simulator) | Our rule |
+| 3 days of deficit for red | 3 | — | Our decision |
+| Proposal A | 8/10 high, 6/10 medium | Wang 2022 supports voting over several runs | The thresholds, and using agreement as confidence: it is not calibrated |
+| Follow-up check | at most 1 | — | Design rule |
+| Simulator baseline | simulated per astronaut | — | It does not come from a medical record |
 
-## 4. Para la presentación
+## 4. For the presentation
 
-Decirlo así es más fuerte que esconderlo: los **requerimientos y límites** vienen de documentos de la NASA y de artículos revisados; el **método de alerta** (desviación de la línea base personal) tiene respaldo publicado; los **umbrales exactos** son decisiones del equipo, están etiquetados en la propia app y habría que validarlos con datos reales.
+Saying it this way is stronger than hiding it: the **requirements and limits** come from NASA documents and peer-reviewed articles; the **alert method** (deviation from the personal baseline) has published support; the **exact thresholds** are team decisions, labeled as such in the app itself, and would need to be validated with real data.
