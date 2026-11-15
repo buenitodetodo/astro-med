@@ -17,7 +17,7 @@ Stack: **Astro** (frontend) · **Hono** (backend) · **Railway** (deployment) ·
                  │                 │ alert or SOS
                  │                 ▼
                  │      ┌─────────────────────┐   "Are you okay?"
-                 └─────▶│ Generic first-aid   │   [Cancel] 20 s
+                 └─────▶│ Generic first-aid   │   [Cancel] 7 s 
                         │ card                │
                         └─────────┬───────────┘
                                   ▼
@@ -45,7 +45,7 @@ Stack: **Astro** (frontend) · **Hono** (backend) · **Railway** (deployment) ·
 | `GET` | `/estado/:id` | Traffic light per parameter + recommendation of the day |
 | `GET` | `/alertas/:id` | Active watchdog alerts |
 | `POST` | `/emergencia` | SOS button → generic card + activates the AI doctor |
-| `POST` | `/emergencia/:id/cancelar` | "I'm okay" within the 20 s window |
+| `POST` | `/emergencia/:id/cancelar` | "I'm okay" within the 7 s window |
 | `POST` | `/doctor/caso` | Sends the case to the models and returns the voting result |
 | `POST` | `/reporte` | Generates the report for Earth |
 | `PATCH` | `/reporte/:id/aprobar` | The crew approves it → it enters the queue |
@@ -99,12 +99,12 @@ CONTENT     │ PDFs to  │ condition cards         │ simulated profiles│ d
 | 2 | Profile + logbook + vitals with validation and storage (SQLite or Railway Postgres) | They are saved and read back | **V1** |
 | 3 | Calculator (EER, protein, fluids, accumulated deficit) | A test with a sample profile gives the expected number | — |
 | 4 | Watchdog: rules from section 3 → `/estado` and `/alertas` | Bad simulated data triggers an alert | **V2** |
-| 5 | Emergency: SOS, generic card, cancellation at 20 s | The full flow works without AI | **V3** |
+| 5 | Emergency: SOS, generic card, cancellation window (now 7 s) | The full flow works without AI | **V3** |
 | 6 | Connection to LM Studio (local OpenAI-compatible API) + 10-round voting | A case returns a voted result | **V4** |
 | 7 | Report + approval + queue | The approved report appears in `/cola` | **V5** |
 | 8 | Deployment on Railway + private tunnel (Tailscale) to the PC with the models | The online frontend reaches the local AI | **V6** |
 
-Each version that works is saved in `versions/` before the next big change. If a change breaks something and they get stuck in an error loop, they go back to the last good version.
+Each version that works was saved in the private working repository before the next big change. If a change broke something and they get stuck in an error loop, they go back to the last good version.
 
 ## 6. First Message for Claude Code
 

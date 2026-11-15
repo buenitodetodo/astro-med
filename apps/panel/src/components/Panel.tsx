@@ -2,6 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { nombres_campo, nombres_tipo, pedir, type Astronauta, type Caso, type Catalogo, type Estado } from '../lib/api';
 import Constructor from './Builder';
 import Grafica, { estilo_marca, type Marca } from './Chart';
+import { demos } from '../lib/demos';
+
+const demo_sano = demos.find((demo) => demo.id === 'sano')!;
 
 const url_app = import.meta.env.PUBLIC_APP_URL ?? 'http://localhost:4330';
 
@@ -108,6 +111,8 @@ export default function Panel({ salir }: { salir?: () => void }) {
   const [error, setError] = useState<string | null>(null);
   const [reproduciendo, setReproduciendo] = useState(false);
   const [constructor_abierto, setConstructorAbierto] = useState(false);
+  const [confirmar_reset, setConfirmarReset] = useState(false);
+  const [progreso_reset, setProgresoReset] = useState<string | null>(null);
   const [guia_abierta, setGuiaAbierta] = useState(() => {
     try {
       return localStorage.getItem('panel-guia') !== 'cerrada';
@@ -183,6 +188,30 @@ export default function Panel({ salir }: { salir?: () => void }) {
     setEstado(nuevo);
     setConstructorAbierto(false);
     setTripulacion((actuales) => actuales.map((p) => (p.id === nuevo.escenario.crew_member_id ? { ...p, escenario_id: nuevo.escenario.id } : p)));
+  };
+
+  const resetear_todos = async () => {
+    setConfirmarReset(false);
+    setOcupado(true);
+    setReproduciendo(false);
+    const nuevos: Record<string, string> = {};
+    let fallo = false;
+    for (const [indice, persona] of tripulacion.entries()) {
+      setProgresoReset(`Resetting ${persona.nombre} (${indice + 1} of ${tripulacion.length})…`);
+      const listo = await intentar(async () => {
+        const creado = await pedir<Estado>('/scenarios', { method: 'POST', body: { crew_id: persona.id, ...demo_sano.cuerpo } });
+        return pedir<Estado>(`/scenarios/${creado.escenario.id}/advance`, { method: 'POST', body: { dias: demo_sano.avanzar } });
+      });
+      if (!listo) {
+        fallo = true;
+        break;
+      }
+      nuevos[persona.id] = listo.escenario.id;
+    }
+    setTripulacion((actuales) => actuales.map((p) => (nuevos[p.id] ? { ...p, escenario_id: nuevos[p.id] } : p)));
+    if (crew_id && nuevos[crew_id]) await cargar_escenario(nuevos[crew_id]);
+    setOcupado(false);
+    setProgresoReset(fallo ? null : `All ${tripulacion.length} astronauts are back to a healthy week.`);
   };
 
   const avanzar = useCallback(
@@ -293,6 +322,42 @@ export default function Panel({ salir }: { salir?: () => void }) {
               {persona.escenario_id && <p className="text-[11px] text-acento mt-1">Scenario loaded</p>}
             </button>
           ))}
+          {tripulacion.length > 0 && (
+            <div className="tarjeta p-3 space-y-2">
+              {confirmar_reset ? (
+                <>
+                  <p className="text-xs text-texto-2">
+                    Load “{demo_sano.titulo}” on all {tripulacion.length} astronauts? This erases everything they have in the crew app: logs, meals, SOS, AI checks and reports. Profiles are kept.
+                  </p>
+                  <div className="flex gap-2">
+                    <button type="button" className="boton bg-critico text-white hover:bg-critico/90" disabled={ocupado} onClick={() => void resetear_todos()}>
+                      <span className="material-symbols-outlined text-[18px]">restart_alt</span> Reset all
+                    </button>
+                    <button type="button" className="boton border border-borde text-texto-2 hover:text-acento" onClick={() => setConfirmarReset(false)}>
+                      Cancel
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  className="boton w-full justify-center border border-borde text-texto-2 hover:text-acento hover:border-acento"
+                  disabled={ocupado}
+                  onClick={() => {
+                    setProgresoReset(null);
+                    setConfirmarReset(true);
+                  }}
+                >
+                  <span className="material-symbols-outlined text-[18px]">restart_alt</span> Reset all crew to healthy
+                </button>
+              )}
+              {progreso_reset && (
+                <p className="text-xs text-texto-3" role="status">
+                  {progreso_reset}
+                </p>
+              )}
+            </div>
+          )}
           {astronauta && (
             <details className="tarjeta p-3 text-xs text-texto-2">
               <summary className="cursor-pointer select-none font-mono text-[11px] uppercase tracking-wider text-texto-3">Profile of {astronauta.nombre}</summary>

@@ -8,13 +8,13 @@ Astro-Med is health monitoring software for astronauts on long missions, built f
 
 ## 2. Project Demonstration
 
-Link to the team's slides (maximum 7) or video (maximum 30 seconds).
+Slides: https://docs.google.com/presentation/d/1es0eOaXckPB-q2qJO3cNop0qexNJS2lz/edit?usp=sharing
 
 ## 3. Project
 
 - Crew app: https://astro-med-web.astro-med.workers.dev
-- Mission simulator: https://astro-med-panel.astro-med.workers.dev
-- Code: https://github.com/buenitodetodo/Hackathon (the repository must be public for the judges to open it)
+- Mission simulator: https://astro-med-panel.astro-med.workers.dev (password protected)
+- Code: https://github.com/buenitodetodo/astro-med
 
 ## 4. Project Details
 
@@ -22,7 +22,7 @@ Link to the team's slides (maximum 7) or video (maximum 30 seconds).
 
 **How the parts connect.** Two web apps (the crew app and the simulator) talk to one API on Cloudflare Workers with a D1 database. The health logic is plain code: a calculator for energy, protein and fluid requirements, and a watcher that evaluates eight parameters. The AI doctor runs as a durable workflow that asks two models, ten rounds each, and counts the votes. The models run on the team's computers and are reached through secure tunnels.
 
-**Step by step.** (1) The log keeper records the day. (2) The watcher compares it with the astronaut's own baseline and with sourced thresholds, and returns a traffic light per parameter with the source of each alert. (3) With a red alert, two alerts at once, or alerts two days in a row, it requests a preventive AI check; new symptoms trigger one follow-up. (4) Both models vote; agreement with at least 8 of 10 votes is high confidence, 6 or 7 is medium, anything else is doubtful and goes to Earth. (5) In an emergency, SOS gives 20 seconds to cancel, shows a first-aid card and opens the AI case. (6) The crew approves a report and the app simulates the trip to Earth and the reply.
+**Step by step.** (1) The log keeper records the day. (2) The watcher compares it with the astronaut's own baseline and with sourced thresholds, and returns a traffic light per parameter with the source of each alert. (3) With a red alert, two alerts at once, or alerts two days in a row, it requests a preventive AI check; new symptoms trigger one follow-up. (4) Both models vote; agreement with at least 8 of 10 votes is high confidence, 6 or 7 is medium, anything else is doubtful and goes to Earth. (5) In an emergency, SOS gives 7 seconds to cancel, shows a first-aid card and opens the AI case. (6) The crew approves a report and the app simulates the trip to Earth and the reply.
 
 **What it delivers.** A daily summary with a traffic light for eight parameters, nutrition and exercise progress, alerts with their sources, AI checks with votes and confidence, first-aid cards, reports to Earth, and a simulator with a day-by-day timeline, charts of each vital sign and a comparison between the AI diagnosis and the hidden answer.
 

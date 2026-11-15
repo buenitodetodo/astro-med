@@ -1,7 +1,4 @@
-
-
-
-![NASA Space Apps 2026](https://img.shields.io/badge/NASA%20Space%20Apps-2026-0B3D91?logo=nasa&logoColor=white) ![Status](https://img.shields.io/badge/status-demo%20live-brightgreen) ![Offline first](https://img.shields.io/badge/design-offline--first-brightgreen) ![Local AI](https://img.shields.io/badge/AI-runs%20locally-6E56CF) 
+![NASA Space Apps 2026](https://img.shields.io/badge/NASA%20Space%20Apps-2026-0B3D91?logo=nasa&logoColor=white) ![Status](https://img.shields.io/badge/status-demo%20live-brightgreen) ![Offline first](https://img.shields.io/badge/design-offline--first-brightgreen) ![Local AI](https://img.shields.io/badge/AI-runs%20locally-6E56CF)
 
 ![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white) ![Hono](https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white) ![Cloudflare Tunnel](https://img.shields.io/badge/Cloudflare%20Tunnel-F38020?logo=cloudflare&logoColor=white) ![LM Studio](https://img.shields.io/badge/LM%20Studio-local%20AI-6E56CF)
 
@@ -9,15 +6,14 @@
 
 *NASA Space Apps Challenge 2026 · Project documentation*
 
-> ![Titel ](https://i.postimg.cc/13DCXjpS/logo-astro-med(1).png)
-
+> ![Astro-Med logo](https://i.postimg.cc/13DCXjpS/logo-astro-med(1).png)
 
 ## Table of contents
 
 1. [Summary](#summary)
 2. [Why this matters](#why-this-matters)
 3. [Benefits](#benefits)
-4. [Presentation](#Presentation)
+4. [Presentation](#presentation)
 5. [Principles](#principles)
 6. [The components](#the-components)
 7. [What it monitors](#what-it-monitors)
@@ -35,25 +31,22 @@
 19. [How to run](#how-to-run)
 20. [Pending decisions](#pending-decisions)
 21. [Team and contributions](#team-and-contributions)
-22. [License](#license)
 
 ## Summary
 
 A health monitoring app for astronauts on space missions, designed to work **without an internet connection**. It combines a daily log and vital signs with a **code-based watchdog** that catches problems early, and a **local AI doctor** that supports the crew while the answer from Earth is on its way.
 
-**Live demo:** [crew app](https://astro-med-web.astro-med.workers.dev) · [mission simulator](https://astro-med-panel.astro-med.workers.dev)
+**Live demo:** [crew app](https://astro-med-web.astro-med.workers.dev) · [mission simulator](https://astro-med-panel.astro-med.workers.dev) (the simulator is password protected; the team runs it during the demo)
 
-> **Challenge:** 
-> ![Create Health Monitoring Software for Astronauts on Space Missions
-Join the Challenge](https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/)    CHECK HERE 
+> **Challenge:** [Create Health Monitoring Software for Astronauts on Space Missions](https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/)
 
 ## Why this matters
 
-On distant missions such as Mars, communication with Earth takes between 3 and 21 minutes one way. The project aims to keep the crew from depending on that reply, both to prevent problems and to act in an emergency.
+On distant missions such as Mars, communication with Earth takes between 3 and 22 minutes one way (NASA NTRS 20220013418). The project aims to keep the crew from depending on that reply, both to prevent problems and to act in an emergency.
 
 In flight, astronauts sleep about 6.5 hours a night, and with 6 hours or less their reaction time is measurably slower (Jones et al., 2022). Bone is lost at 1 to 2% per month in the hip and spine (NASA OCHMO-TB-030). These changes build up slowly, which is why daily monitoring matters.
 
-![Earth to Mars: one-way signal delay, between 3 and 21 minutes](https://i.postimg.cc/65XzShkc/earth-mars-delay.png)
+![Earth to Mars: one-way signal delay](https://i.postimg.cc/65XzShkc/earth-mars-delay.png)
 
 ## Benefits
 
@@ -65,9 +58,9 @@ In flight, astronauts sleep about 6.5 hours a night, and with 6 hours or less th
 
 ## Presentation
 
-Demo Presentation  [https://i.postimg.cc/gJ72Dd2q/Demo-video-complete.jpg](https://docs.google.com/presentation/d/1es0eOaXckPB-q2qJO3cNop0qexNJS2lz/edit?usp=drive_link&ouid=105118191719963834993&rtpof=true&sd=true)
+Click the image to open the demo presentation.
 
-
+[![Astro-Med demo presentation](https://i.postimg.cc/gJ72Dd2q/Demo-video-complete.jpg)](https://docs.google.com/presentation/d/1es0eOaXckPB-q2qJO3cNop0qexNJS2lz/edit?usp=sharing)
 
 ## Principles
 
@@ -122,7 +115,7 @@ Changed from the first plan: the small model does not stand between the watchdog
               API  (Hono on Cloudflare Workers)
    +-----------+-----------+------------+-------------+
    | profile   | watchdog  | emergency  | simulator   |
-   | log/meals | status    | SOS 20 s   | scenarios   |
+   | log/meals | status    | SOS 7 s    | scenarios   |
    | vitals    | alerts    | reports    | ground truth|
    +-----------+-----+-----+------+-----+------+------+
                      |            |            |
@@ -147,11 +140,11 @@ The image below is the original design sketch; the text diagram above is what wa
 
 ## Emergency flow
 
-![SOS cancel window](https://img.shields.io/badge/SOS%20cancel%20window-20%20s-red)
+![SOS cancel window](https://img.shields.io/badge/SOS%20cancel%20window-7%20s-red)
 
 1. The astronaut or crew presses the **SOS button**, or writes "SOS" in the chat.
 2. At **second 1**, a **generic first-aid card** appears, before the AI responds.
-3. The system asks *"Are you OK?"* and gives **20 seconds** to cancel.
+3. The system asks *"Are you OK?"* and gives **7 seconds** to cancel.
 4. The **AI doctor** receives the case: profile, symptoms, latest vital signs and watchdog alerts. Each model votes 10 times and the votes decide the confidence.
 5. The result appears with the card for that condition and the critical profile data (blood type, weight, allergies, history).
 6. If the case is outside the catalog, or the models disagree, it is labeled as such and **always escalated to Earth**.
@@ -169,7 +162,7 @@ There are no falls in zero gravity, so the system does not try to detect them.
 - Numbers (EER, doses, deficits, thresholds) are computed by code from a cited source, never by the AI.
 - A case with no predefined card produces a generated text, always labeled *"no validated protocol"* and escalated to Earth.
 - The crew approves every report before it enters the queue to Earth.
-- An SOS can be cancelled within 20 seconds.
+- An SOS can be cancelled within 7 seconds.
 - Falls are not detected, because there is no fall in zero gravity.
 
 ## Tech stack
@@ -186,10 +179,10 @@ There are no falls in zero gravity, so the system does not try to detect them.
 | Connection to the local AI | Cloudflare Tunnel, one per machine |
 | Model server | LM Studio (OpenAI-compatible API) |
 | Models | Phi-4-reasoning-plus (14B) · MedGemma (4B) · Gemma 3n (4B) |
-| Tests | Vitest: 75 tests across the API, the crew app and the shared package |
+| Tests | Vitest: 98 tests across the API, the crew app, the simulator and the shared package |
 
-> ![dnate ](https://i.postimg.cc/NMT9n52t/911876749-1527877252733245-2227373090837826689-n.png)
-> ![mio ](https://i.postimg.cc/yxHgCs0t/Captura-de-pantalla-2026-11-15-100912.png)
+> ![Crew app summary screen](https://i.postimg.cc/NMT9n52t/911876749-1527877252733245-2227373090837826689-n.png)
+> ![Crew app biometrics screen](https://i.postimg.cc/yxHgCs0t/Captura-de-pantalla-2026-11-15-100912.png)
 
 ## AI models
 
@@ -219,8 +212,8 @@ All routes live under `/v1`. The crew app identifies the astronaut with a demo h
 | `GET` `POST` | `/v1/vitals` | Pulse, heart rate variability, blood pressure, temperature and SpO₂, each with its source |
 | `GET` | `/v1/nutrition` | Requirements computed for this astronaut |
 | `GET` | `/v1/status` | Traffic light per parameter, alerts and the recommendation of the day |
-| `POST` | `/v1/emergency` | SOS: generic card and the 20 s window |
-| `POST` | `/v1/emergency/:id/cancel` | "I'm fine" within the 20 s window |
+| `POST` | `/v1/emergency` | SOS: generic card and the 7 s window |
+| `POST` | `/v1/emergency/:id/cancel` | "I'm fine" within the 7 s window |
 | `POST` | `/v1/doctor/case` | Sends a case to the models; the voting runs in the background |
 | `GET` | `/v1/doctor/case/:id` | Progress and result of the vote |
 | `GET` | `/v1/doctor/cases` | Recent preventive checks and emergency cases |
@@ -250,7 +243,7 @@ The requirements and limits below come from the cited sources. Full detail is in
 | CO₂ *(planned, not built)* | 7-day average below 2.5 mmHg | OCHMO-TB-004 |
 | Exams *(planned, not built)* | Reminders based on the official calendar (for example, eyes at L+30 and L+90) | OCHMO-TB-043 |
 
-In the next example we told the ai that someone was losing blood 
+In the next example we told the AI that someone was losing blood.
 
 [![Captura-de-pantalla-2026-11-15-101419.png](https://i.postimg.cc/T38S8ssf/Captura-de-pantalla-2026-11-15-101419.png)](https://postimg.cc/mtwVCmR5)
 
@@ -271,18 +264,17 @@ Other sources: peer-reviewed studies on astronauts (Jones 2022, Stahn 2017, Nors
 
 **Honest limit:** the project uses NASA standards, technical briefs and published measurements. It does not yet ingest a NASA dataset of raw measurements. The NASA Open Science RadLab portal (real radiation dose rates from the ISS) is identified in the research as the next step.
 
-
 ## Repository structure
 
 ![Docs](https://img.shields.io/badge/docs-WORKFLOW%20%C2%B7%20research-blue)
 
 ```
 apps/
-├── api/                         The API. src/salud is the health logic, src/rutas the routes, migrations the database
+├── api/                         The API. src/health is the health logic, src/routes the routes, migrations the database
 ├── web/                         The crew app: Summary, Biometrics, ASTRO AI, SOS, History
 └── panel/                       The mission simulator
 packages/shared/                 Types and validation shared by the API and the apps
-research/                 Research, in Spanish, with a source for every number
+research/                        Research, with a source for every number
 ├── 01_astronaut_health.md       The parameters, NASA datasets and PDFs
 ├── 02_general_datasets.md       NASA conditions, medical text, vital signs, nutrition
 ├── 03_from_hackathonchido.md    Sources and technical data from HackathonChido
@@ -299,25 +291,25 @@ WORKFLOW.md                      The original plan and working notes
 |---|---|---|
 | V1 | Profile, log and vitals with validation and storage | ![V1](https://img.shields.io/badge/V1-done-brightgreen) |
 | V2 | Calculator and watchdog with sourced rules | ![V2](https://img.shields.io/badge/V2-done-brightgreen) |
-| V3 | Emergency: SOS, generic card and cancellation at 20 s | ![V3](https://img.shields.io/badge/V3-done-brightgreen) |
+| V3 | Emergency: SOS, generic card and cancellation window (now 7 s) | ![V3](https://img.shields.io/badge/V3-done-brightgreen) |
 | V4 | Rebuilt on Cloudflare Workers and D1, with tests | ![V4](https://img.shields.io/badge/V4-done-brightgreen) |
 | V5 | AI doctor with the real models, reports to Earth, crew app, simulator, deployed | ![V5](https://img.shields.io/badge/V5-done-brightgreen) |
 | V6 | Stability, phone layout, installable app | ![V6](https://img.shields.io/badge/V6-done-brightgreen) |
 
-Each version that works is saved in `versions/` before the next big change. If a change breaks something, the project goes back to the last good version.
+Each version that works was saved in the team's private working repository before the next big change. If a change broke something, the project went back to the last good version.
 
 ## Demo script
 
 ![Demo](https://img.shields.io/badge/demo-live-brightgreen)
 
+0. Before presenting, press **Reset all crew to healthy** in the simulator so every astronaut starts with a green week.
 1. In the simulator, pick an astronaut and the "Developing respiratory infection" scenario. Only the simulator knows the hidden day and the answer.
 2. Press Play: one day of data is uploaded per second. The watchdog stays green until the hidden day, then raises alerts with their sources.
 3. The watchdog requests a preventive AI check. With vital signs only the models are unsure and the case goes to Earth; when the cough is logged, the follow-up check gives the diagnosis.
 4. In the crew app, the same astronaut shows the AI notice. Open History, prepare the report, approve it and watch it travel to Earth.
-5. Emergency: SOS button, generic card at second 1, 20 seconds to cancel, AI doctor and result card.
+5. Emergency: SOS button, generic card at second 1, 7 seconds to cancel, AI doctor and result card.
 
 The public demo runs on Cloudflare and reaches the models through tunnels. To show it with the internet unplugged, run everything on the local network with `pnpm dev`.
-
 
 [![Captura-de-pantalla-2026-11-15-101953.png](https://i.postimg.cc/W3r87p2y/Captura-de-pantalla-2026-11-15-101953.png)](https://postimg.cc/hzDVDBQ8)
 
@@ -365,15 +357,13 @@ The script checks that each machine answers with the right models and publishes 
 
 ## Team and contributions
 
-![Team](https://i.postimg.cc/vHf5c20k/Team-complete.jpg)
+![Team New Gens](https://i.postimg.cc/vHf5c20k/Team-complete.jpg)
 
 | Name | Role |
 |---|---|
 | **Dante** | **Back-End Programmer And Team Leader** |
 | **Isadillas** | **Front-End Designer And General design** |
-| **Rodrigo** | **Documentore, Main Investigator And Brainstormer  ** |
+| **Rodrigo** | **Documenter, Main Investigator And Brainstormer** |
 
-
-
-[![Whats-App-Image-2026-11-15-at-10-22-34-AM.jpg](https://i.postimg.cc/Dz38X7MW/Whats-App-Image-2026-11-15-at-10-22-34-AM.jpg)](https://postimg.cc/Hr3YG1HH) 
+[![The team at work](https://i.postimg.cc/Dz38X7MW/Whats-App-Image-2026-11-15-at-10-22-34-AM.jpg)](https://postimg.cc/Hr3YG1HH)
 
