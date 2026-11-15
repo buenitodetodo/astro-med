@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { api, describeError } from './api';
+import { api, ApiError, describeError } from './api';
 import { sondear } from './polling';
 
 export type Color = 'verde' | 'amarillo' | 'rojo' | 'informativo' | 'sin_datos';
@@ -139,10 +139,12 @@ export function useTripulante(crew_id: string) {
         throw { causa: e, parte: parte(ruta) };
       });
     const opcional = <T,>(ruta: string) =>
-      api<T>(ruta, opciones).catch(() => {
-        faltantes.push(parte(ruta));
-        return null;
-      });
+      api<T>(ruta, opciones)
+        .catch(() => new Promise<T>((listo, fallo) => setTimeout(() => api<T>(ruta, opciones).then(listo, fallo), 800)))
+        .catch((e: unknown) => {
+          faltantes.push(`${parte(ruta)}${e instanceof ApiError ? e.status : ''}`);
+          return null;
+        });
     try {
       const [me, perfil, estado, nutricion, comidas, bitacora, signos, radiacion] = await Promise.all([
         pedir<Me>('/v1/me'),

@@ -36,11 +36,12 @@ const astronautas = {
   'crew-sim-1': { nombre: 'Sim One', edad: 38, sexo: 'mujer', peso_kg: 62, estatura_m: 1.66, tipo_sangre: 'O+', alergias: ['penicillin'] },
   'crew-sim-2': { nombre: 'Sim Two', edad: 51, sexo: 'hombre', peso_kg: 92, estatura_m: 1.86, tipo_sangre: 'B-' },
   'crew-sim-3': { nombre: 'Sim Three', edad: 29, sexo: 'hombre', peso_kg: 70, estatura_m: 1.74 },
+  'crew-sim-4': { nombre: 'Sim Four', edad: 44, sexo: 'mujer', peso_kg: 58, estatura_m: 1.6 },
 };
 
 beforeAll(async () => {
   await env.DB.prepare(
-    "INSERT OR IGNORE INTO crew_members (id, mission_id, callsign, role, is_demo) VALUES ('crew-sim-1', 'm-test', 'S1', 'tester', 1), ('crew-sim-2', 'm-test', 'S2', 'tester', 1), ('crew-sim-3', 'm-test', 'S3', 'tester', 1)",
+    "INSERT OR IGNORE INTO crew_members (id, mission_id, callsign, role, is_demo) VALUES ('crew-sim-1', 'm-test', 'S1', 'tester', 1), ('crew-sim-2', 'm-test', 'S2', 'tester', 1), ('crew-sim-3', 'm-test', 'S3', 'tester', 1), ('crew-sim-4', 'm-test', 'S4', 'tester', 1)",
   ).run();
   for (const [crew, perfil] of Object.entries(astronautas)) await call(crew, 'PUT', '/v1/profile', perfil);
 });
@@ -197,4 +198,28 @@ describe('scenarios', () => {
     const crew = await sim('GET', '/crew');
     expect(crew.body.tripulacion.find((p: Json) => p.id === 'crew-sim-3').escenario_id).toBe(segundo.body.escenario.id);
   });
+
+  it('the current scenario day is always today, so the crew app sees every new day', async () => {
+    const dia = (atras: number) => new Date(Date.now() - atras * 86_400_000).toISOString().slice(0, 10);
+    const creado = await sim('POST', '/scenarios', { crew_id: 'crew-sim-4', plantilla: 'laceracion', dias_totales: 7, dia_evento: 4 });
+    const id = creado.body.escenario.id;
+
+    const dos = await sim('POST', `/scenarios/${id}/advance`, { dias: 2 });
+    expect(dos.body.dias.map((d: Json) => d.fecha)).toEqual([dia(1), dia(0)]);
+    expect(dos.body.escenario.fecha_evento).toBe(dia(-2));
+    const estado = await call('crew-sim-4', 'GET', '/v1/status');
+    expect(estado.body.fecha_signos).toBe(dia(0));
+    expect(estado.body.fecha_bitacora).toBe(dia(0));
+
+    const tres = await sim('POST', `/scenarios/${id}/advance`, { dias: 1 });
+    expect(tres.body.dias.map((d: Json) => d.fecha)).toEqual([dia(2), dia(1), dia(0)]);
+    const bitacora = await call('crew-sim-4', 'GET', '/v1/log');
+    expect(bitacora.body.dias.map((d: Json) => d.fecha).sort()).toEqual([dia(2), dia(1), dia(0)]);
+    const comidas = await call('crew-sim-4', 'GET', '/v1/meals');
+    expect(comidas.body.comidas).toHaveLength(3);
+    const futuras = await env.DB.prepare('SELECT COUNT(*) AS n FROM health_observations WHERE crew_member_id = ? AND observed_at > ?')
+      .bind('crew-sim-4', new Date().toISOString()).first<Json>();
+    expect(futuras!.n).toBe(0);
+  });
 });
+

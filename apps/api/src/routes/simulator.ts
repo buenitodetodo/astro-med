@@ -198,6 +198,38 @@ const escribir_dia = async (db: D1Database, crew_id: string, escenario_id: strin
   await db.batch(sentencias);
 };
 
+const mover_datos = async (db: D1Database, crew_id: string, dias: number) => {
+  const modificador = `${dias} days`;
+  const instantes = (tabla: string, columnas: string[]) =>
+    db
+      .prepare(`UPDATE ${tabla} SET ${columnas.map((col) => `${col} = strftime('%Y-%m-%dT%H:%M:%fZ', ${col}, ?1)`).join(', ')} WHERE crew_member_id = ?2`)
+      .bind(modificador, crew_id);
+  await db.batch([
+    instantes('health_observations', ['observed_at', 'received_at']),
+    instantes('health_alerts', ['created_at']),
+    instantes('sync_events', ['created_at']),
+    instantes('comidas', ['comido_en', 'creado_en']),
+    db.prepare('UPDATE comidas SET fecha = date(fecha, ?1) WHERE crew_member_id = ?2').bind(modificador, crew_id),
+    instantes('emergencias', ['creada_en', 'vence_en', 'cancelada_en']),
+    instantes('casos_doctor', ['creado_en', 'terminado_en']),
+    instantes('reportes', ['creado_en', 'aprobado_en', 'llega_en', 'respuesta_en']),
+    db
+      .prepare(`UPDATE bitacora SET fecha = '~' || date(fecha, ?1), actualizado_en = strftime('%Y-%m-%dT%H:%M:%fZ', actualizado_en, ?1) WHERE crew_member_id = ?2`)
+      .bind(modificador, crew_id),
+    db.prepare(`UPDATE bitacora SET fecha = substr(fecha, 2) WHERE crew_member_id = ?1 AND fecha LIKE '~%'`).bind(crew_id),
+  ]);
+};
+
+const anclar_a_hoy = async (db: D1Database, fila: FilaEscenario, dias: number) => {
+  const dia_final = Math.min(fila.dia_actual + dias, fila.dias_totales);
+  const nueva_base = fecha_hace(dia_final - 1);
+  const diferencia = Math.round((Date.parse(nueva_base) - Date.parse(fila.fecha_base)) / 86_400_000);
+  if (diferencia === 0) return fila;
+  if (fila.dia_actual > 0) await mover_datos(db, fila.crew_member_id, diferencia);
+  await db.prepare('UPDATE escenarios_sim SET fecha_base = ? WHERE id = ?').bind(nueva_base, fila.id).run();
+  return { ...fila, fecha_base: nueva_base };
+};
+
 const resumir_caso = async (db: D1Database, id: string | null, esperada: string | null) => {
   if (!id) return null;
   const fila = await db.prepare('SELECT id, estado, rondas_hechas, rondas_totales, resultado, error FROM casos_doctor WHERE id = ?').bind(id).first<FilaCasoSim>();
@@ -461,7 +493,7 @@ export const rutas_simulador = new Hono<AppEnv>()
         `INSERT INTO escenarios_sim (id, crew_member_id, plantilla, configuracion, dias_totales, dia_inicio_cambios, dia_evento, fecha_base, estado, creado_en)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'activo', ?)`,
       )
-      .bind(id, crew.id, base.id, JSON.stringify(configuracion), dias_totales, dia_inicio_cambios, dia_evento, fecha_hace(dias_totales - 1), new Date().toISOString())
+      .bind(id, crew.id, base.id, JSON.stringify(configuracion), dias_totales, dia_inicio_cambios, dia_evento, fecha_hace(0), new Date().toISOString())
       .run();
     return c.json(await armar_estado(c.env, (await buscar_escenario(db, id))!), 201);
   })
@@ -479,6 +511,7 @@ export const rutas_simulador = new Hono<AppEnv>()
     if (!crew || !perfil) return c.json({ error: 'not_found', message: 'Crew member not found' }, 404);
 
     const { dias } = c.req.valid('json');
+    fila = await anclar_a_hoy(db, fila, dias);
     for (let paso = 0; paso < dias && fila.estado === 'activo'; paso += 1) {
       fila = await avanzar_un_dia(c.env, fila, crew, perfil);
     }
