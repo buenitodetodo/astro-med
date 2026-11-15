@@ -99,7 +99,7 @@ Changed from the first plan: the small model does not stand between the watchdog
 | 7 | Muscle and bone mass | Hard to measure, so it is **predicted** from the Earth profile, with exercise recommendations (ARED, T2, CEVIS) |
 | 8 | Blood oxygen (SpO₂) | Alert below 95% |
 
- ![Dashboard](https://i.postimg.cc/W1KZRNDc/907577765-29443277402035061-9181441908785427497-n.png)
+ ![Dashboard](https://i.postimg.cc/m2n2WTY0/Dashboard.png)
 
 ## Architecture
 
