@@ -65,7 +65,7 @@ In flight, astronauts sleep about 6.5 hours a night, and with 6 hours or less th
 
 ## Video
 
-![Demo video](https://img.shields.io/badge/demo%20video-pending-lightgrey)
+![Demo video](https://i.postimg.cc/gJ72Dd2q/Demo-video-complete.jpg)
 
 
 > 📷 **PHOTO — Video thumbnail.** A clickable thumbnail that opens the video. *Why it helps:* many judges decide from the video first.
@@ -366,7 +366,7 @@ The script checks that each machine answers with the right models and publishes 
 
 ## Team and contributions
 
-![Team](https://img.shields.io/badge/team-to%20be%20added-lightgrey)
+![Team](https://i.postimg.cc/vHf5c20k/Team-complete.jpg)
 
 | Name | Role |
 |---|---|
