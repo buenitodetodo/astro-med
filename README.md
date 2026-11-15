@@ -17,7 +17,7 @@
 1. [Summary](#summary)
 2. [Why this matters](#why-this-matters)
 3. [Benefits](#benefits)
-4. [Video](#video)
+4. [Presentation](#Presentation)
 5. [Principles](#principles)
 6. [The components](#the-components)
 7. [What it monitors](#what-it-monitors)
@@ -63,12 +63,11 @@ In flight, astronauts sleep about 6.5 hours a night, and with 6 hours or less th
 - **For the flight surgeon on Earth:** reports arrive already structured and approved by the crew.
 - **For the mission:** problems are caught early from the daily log and vital signs.
 
-## Video
+## Presentation
 
-![Demo video](https://i.postimg.cc/gJ72Dd2q/Demo-video-complete.jpg)
+![Demo Presentation ]([https://i.postimg.cc/gJ72Dd2q/Demo-video-complete.jpg](https://docs.google.com/presentation/d/1es0eOaXckPB-q2qJO3cNop0qexNJS2lz/edit?usp=drive_link&ouid=105118191719963834993&rtpof=true&sd=true)
 
 
-> 📷 **PHOTO — Video thumbnail.** A clickable thumbnail that opens the video. *Why it helps:* many judges decide from the video first.
 
 ## Principles
 
