@@ -1,0 +1,100 @@
+{
+  "estado": "provisional",
+  "fuente": "Condition names: NASA OCHMO-TB-043 Rev A (2023) monitored changes and the NASA Integrated Medical Model (IMM) condition list for 31-180 day missions (nasa.gov/low-earth-orbit-imm-runs). Cards: public first-aid guidance, labeled per card. Provisional until the content team reviews it against IMPACT 1.0.",
+  "condiciones": [
+    {
+      "id": "laceracion_piel",
+      "nombre": "Skin laceration (cut)",
+      "fuente": "NASA IMM 31-180 day condition list",
+      "tarjeta": {
+        "titulo": "Skin laceration: first aid",
+        "estado": "provisional",
+        "fuente": "NHS, Cuts and grazes (nhs.uk/conditions/cuts-and-grazes). General first-aid protocol, not NASA's, and not validated for microgravity: steps that rely on gravity (raising the wound above the heart) may not work in flight.",
+        "pasos": [
+          "Wash and dry your hands, or put on gloves from the medical kit, before touching the wound.",
+          "Check the wound for debris. If an object is embedded, do not pull it out: press on both sides of it.",
+          "If nothing is embedded, press firmly on the wound with a clean cloth or sterile dressing until the bleeding is controlled.",
+          "Once the bleeding stops, check the dressing is not too tight: skin beyond it should regain its colour within 2 seconds of being pressed. Re-check every 10 minutes.",
+          "Rinse the wound with clean water or sterile wipes, pat it dry and clean the skin around it, wiping away from the wound.",
+          "Cover it with a sterile dressing and keep it clean and dry.",
+          "Escalate to the flight surgeon now if the cut is deep or large (over about 5 cm), has an embedded object, will not stop bleeding, spurts bright red blood, or there is loss of feeling or movement near it."
+        ],
+        "que_no_hacer": [
+          "Do not remove an embedded object.",
+          "Do not wrap the dressing so tight that it cuts off circulation."
+        ]
+      }
+    },
+    {
+      "id": "sincope",
+      "nombre": "Fainting (syncope)",
+      "fuente": "Not on the NASA IMM 31-180 day condition list; added for the demo scenario",
+      "tarjeta": {
+        "titulo": "Fainting (syncope): first aid",
+        "estado": "provisional",
+        "fuente": "NHS, Fainting (nhs.uk/conditions/fainting). General first-aid protocol, not NASA's, and not validated for microgravity: the Earth step of laying the person down and raising their legs relies on gravity.",
+        "pasos": [
+          "Stay calm. Gently shake their shoulders and ask loudly if they are OK.",
+          "If they do not respond, call the crew for help, then gently tilt the head back and lift the chin to open the airway.",
+          "Check their breathing for at least 10 seconds.",
+          "If they are breathing normally, the Earth protocol is to lay them on their back and raise their legs. In flight, keep them restrained in place and tell the flight surgeon.",
+          "Most people wake up within about 30 seconds.",
+          "Escalate to the flight surgeon at once if they are not breathing, cannot be woken within 1 minute, do not fully recover, have chest pain or an irregular heartbeat, are injured, have a seizure, or fainted while exercising or lying down."
+        ],
+        "que_no_hacer": [
+          "Do not treat it as harmless: anyone who faints needs a physician to find the cause."
+        ]
+      }
+    },
+    { "id": "abrasion_piel", "nombre": "Skin abrasion", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "erupcion_piel", "nombre": "Skin rash", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "lesion_cabeza", "nombre": "Head injury", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "lesion_torax", "nombre": "Chest injury", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "choque_hipovolemico", "nombre": "Traumatic hypovolemic shock", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "fractura_muneca", "nombre": "Wrist fracture", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "fractura_cadera", "nombre": "Hip or proximal femur fracture", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "esguince_cuello", "nombre": "Neck sprain or strain", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "dolor_lumbar", "nombre": "Low back pain or back sprain/strain", "fuente": "OCHMO-TB-043; NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "paro_cardiaco", "nombre": "Sudden cardiac arrest", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "angina_infarto", "nombre": "Angina or myocardial infarction", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "fibrilacion_auricular", "nombre": "Atrial fibrillation or atrial flutter", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "accidente_cerebrovascular", "nombre": "Stroke (cerebrovascular accident)", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "convulsiones", "nombre": "Seizures", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "asfixia", "nombre": "Choking or obstructed airway", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "inhalacion_humo", "nombre": "Smoke inhalation", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "exposicion_toxicos", "nombre": "Toxic exposure (ammonia, chemicals or volatile organic compounds)", "fuente": "OCHMO-TB-043; NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "sobredosis_medicamento", "nombre": "Medication overdose or adverse reaction", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "sepsis", "nombre": "Sepsis", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "descompresion", "nombre": "Decompression sickness (after EVA)", "fuente": "OCHMO-TB-043; NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "barotrauma", "nombre": "Barotrauma (ear or sinus block)", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "abrasion_ojo", "nombre": "Eye irritation or abrasion", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "quemadura_quimica_ojo", "nombre": "Eye chemical burn", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "infeccion_ojo", "nombre": "Eye infection", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "vision_sans", "nombre": "Vision changes (SANS / VIIP)", "fuente": "OCHMO-TB-043; NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "perdida_auditiva", "nombre": "Hearing loss", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "sinusitis", "nombre": "Acute sinusitis", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "congestion_nasal_cabeza", "nombre": "Nasal or head congestion", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "infeccion_respiratoria", "nombre": "Respiratory infection", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "herpes_zoster", "nombre": "Herpes zoster reactivation (shingles)", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "absceso_dental", "nombre": "Dental abscess", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "pulpa_dental", "nombre": "Dental exposed pulp", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "ulcera_boca", "nombre": "Mouth ulcer", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "apendicitis", "nombre": "Appendicitis", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "diverticulitis", "nombre": "Acute diverticulitis", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "obstruccion_intestinal", "nombre": "Small bowel obstruction", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "indigestion", "nombre": "Indigestion", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "gastroenteritis", "nombre": "Gastroenteritis", "fuente": "NASA IMM 31-400+ day condition list", "tarjeta": null },
+    { "id": "piedras_rinon", "nombre": "Kidney stones (nephrolithiasis)", "fuente": "OCHMO-TB-043; NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "infeccion_urinaria", "nombre": "Urinary tract infection", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "genitourinario", "nombre": "Other genitourinary problem", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "trastorno_sueno", "nombre": "Sleep disorder", "fuente": "NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "sindrome_adaptacion_espacial", "nombre": "Space adaptation syndrome (space motion sickness)", "fuente": "OCHMO-TB-043; NASA IMM 31-180 day condition list", "tarjeta": null },
+    { "id": "intolerancia_ortostatica", "nombre": "Fluid loss and orthostatic intolerance", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "desacondicionamiento_sensoriomotor", "nombre": "Sensorimotor deconditioning", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "perdida_muscular_aerobica", "nombre": "Muscle and aerobic capacity loss", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "perdida_osea", "nombre": "Bone loss", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "deficit_metabolico", "nombre": "Metabolic deficit", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "exposicion_radiacion", "nombre": "Radiation exposure", "fuente": "OCHMO-TB-043", "tarjeta": null },
+    { "id": "exposicion_co2", "nombre": "CO₂ exposure", "fuente": "OCHMO-TB-043", "tarjeta": null }
+  ]
+}

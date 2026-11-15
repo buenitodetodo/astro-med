@@ -1,0 +1,30 @@
+---
+import '../styles/astro-med.css';
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B1B3A" />
+    <meta name="description" content="Astro-Med — experimental health monitoring for astronauts. Not a medical device." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Astro-Med" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>{title} · Astro-Med</title>
+  </head>
+  <body class="bg-[#F4F7FB] text-on-surface antialiased font-sans h-full overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+    <slot />
+    <script>
+      if (import.meta.env.PROD && 'serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+    </script>
+  </body>
+</html>

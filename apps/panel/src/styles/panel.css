@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+@import '@fontsource-variable/inter';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/600.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/700.css';
+@import 'material-symbols/outlined.css';
+
+@theme {
+  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-fondo: #0a0f18;
+  --color-superficie: #0f1724;
+  --color-elevada: #162132;
+  --color-borde: #22324a;
+  --color-texto: #e6edf6;
+  --color-texto-2: #a9b6c8;
+  --color-texto-3: #7d8ba0;
+  --color-serie: #22a594;
+  --color-acento: #2dd4bf;
+  --color-bien: #0ca30c;
+  --color-aviso: #fab219;
+  --color-serio: #ec835a;
+  --color-critico: #d03b3b;
+  --color-azul: #3987e5;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+.campo {
+  @apply w-full rounded-md border-borde bg-fondo text-sm text-texto placeholder:text-texto-3 focus:border-acento focus:ring-acento;
+}
+
+.etiqueta {
+  @apply block font-mono text-[11px] uppercase tracking-wider text-texto-3 mb-1;
+}
+
+.tarjeta {
+  @apply rounded-xl border border-borde bg-superficie;
+}
+
+.boton {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-2 text-sm font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed;
+}

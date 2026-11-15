@@ -1,0 +1,16 @@
+{
+  "titulo": "Emergency: first steps",
+  "estado": "provisional",
+  "fuente": "General first-aid steps, not a NASA protocol. The flight surgeon on Earth confirms what to do next.",
+  "pasos": [
+    "Call for help: alert the rest of the crew.",
+    "Do not leave the affected person alone.",
+    "Check whether they respond and are breathing, and tell the crew.",
+    "Bring the medical kit.",
+    "Keep their blood type and allergies in view (shown on this screen).",
+    "Wait for the AI doctor's personalized card and prepare the message to Earth."
+  ],
+  "que_no_hacer": [
+    "Do not give any medication without checking their allergies first."
+  ]
+}

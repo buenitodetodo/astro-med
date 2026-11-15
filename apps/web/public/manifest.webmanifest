@@ -1,0 +1,22 @@
+{
+  "name": "Astro-Med",
+  "short_name": "Astro-Med",
+  "description": "Experimental health monitoring for astronauts: a watcher with sourced thresholds, a local AI doctor and an SOS flow. Not a medical device.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0B1B3A",
+  "theme_color": "#0B1B3A",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Talk to ASTRO AI", "url": "/assistant" },
+    { "name": "History", "url": "/history" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "estado": "ficticio",
+  "fuente": "Fictional demo menu for the Ares IV mission. Nutrition values are placeholders: replace them with a real menu (for example ISS standard menu data) before presenting them as real.",
+  "raciones": [
+    { "codigo": "ARES-B1-012", "nombre": "Oatmeal with dried fruit", "kcal": 410, "proteina_g": 14, "carbohidratos_g": 68, "grasas_g": 9, "liquidos_ml": 250 },
+    { "codigo": "ARES-B2-019", "nombre": "Scrambled eggs and tortilla", "kcal": 620, "proteina_g": 32, "carbohidratos_g": 58, "grasas_g": 28, "liquidos_ml": 300 },
+    { "codigo": "ARES-S1-004", "nombre": "Nut and cranberry bar", "kcal": 380, "proteina_g": 12, "carbohidratos_g": 40, "grasas_g": 19, "liquidos_ml": 0 },
+    { "codigo": "ARES-S2-007", "nombre": "Protein shake", "kcal": 240, "proteina_g": 30, "carbohidratos_g": 18, "grasas_g": 5, "liquidos_ml": 350 },
+    { "codigo": "ARES-L1-015", "nombre": "Chicken and rice", "kcal": 680, "proteina_g": 42, "carbohidratos_g": 82, "grasas_g": 18, "liquidos_ml": 300 },
+    { "codigo": "ARES-L3-042", "nombre": "Balanced ration Ares L-3", "kcal": 720, "proteina_g": 38, "carbohidratos_g": 90, "grasas_g": 22, "liquidos_ml": 350 },
+    { "codigo": "ARES-D2-031", "nombre": "Beef stew with vegetables", "kcal": 650, "proteina_g": 40, "carbohidratos_g": 60, "grasas_g": 26, "liquidos_ml": 300 },
+    { "codigo": "ARES-D4-008", "nombre": "Pasta with tomato sauce", "kcal": 590, "proteina_g": 22, "carbohidratos_g": 96, "grasas_g": 12, "liquidos_ml": 300 },
+    { "codigo": "ARES-W0-001", "nombre": "Drinking water (500 ml)", "kcal": 0, "proteina_g": 0, "carbohidratos_g": 0, "grasas_g": 0, "liquidos_ml": 500 }
+  ]
+}

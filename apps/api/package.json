@@ -1,0 +1,28 @@
+{
+  "name": "@astro-med/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db:setup": "node scripts/db-setup.mjs",
+    "dev": "pnpm db:setup && wrangler dev --port 8787",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "typecheck": "wrangler types --strict-vars=false && tsc --noEmit -p .",
+    "test": "vitest run",
+    "deploy": "wrangler deploy",
+    "deploy:demo": "wrangler deploy --var DEMO_MODE:true --var ACELERACION_DEMO:60",
+    "connect-ai": "node scripts/connect-ai.mjs"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.9.1",
+    "@astro-med/shared": "workspace:*",
+    "hono": "^4.13.18",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.8.2",
+    "typescript": "^6.0.0",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.162.0"
+  }
+}

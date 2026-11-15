@@ -1,0 +1,47 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "astro-med-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  // Reached only through the web Worker's service binding (same origin, no CORS surface).
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": true },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "astro-med-db",
+      "database_id": "fe149618-920b-40f7-9ae5-8962c441e81e",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // The AI doctor runs its 10 + 10 voting rounds as a durable Workflow, so a slow model never blocks a request.
+  "workflows": [{ "name": "astro-med-doctor", "binding": "DOCTOR_WORKFLOW", "class_name": "DoctorWorkflow" }],
+  "ratelimits": [
+    { "name": "API_LIMITER", "namespace_id": "4201", "simple": { "limit": 240, "period": 60 } }
+  ],
+  "vars": {
+    // DEMO_MODE enables the fictional demo crew and header-selected identity.
+    // It is "false" here on purpose: production never enables it silently.
+    // Local dev turns it on through .dev.vars; `pnpm deploy:demo` turns it on explicitly.
+    "DEMO_MODE": "false",
+    // "si" uses the 1.25 activity factor (ISS-like exercise equipment, JSC-67378); "no" uses 1.11.
+    "EQUIPO_EJERCICIO_EEI": "si",
+    // LM Studio's OpenAI-compatible server. Locally it is the same PC; in the cloud, the Cloudflare Tunnel URL to the PC.
+    // Behind Cloudflare Access, set the secrets LMSTUDIO_ACCESS_ID and LMSTUDIO_ACCESS_SECRET (wrangler secret put).
+    "LMSTUDIO_URL": "http://localhost:1234/v1",
+    // Optional separate LM Studio per model (for example a laptop on the same network). Empty = LMSTUDIO_URL.
+    "LMSTUDIO_MEDICO_URL": "",
+    "LMSTUDIO_CHAT_URL": "",
+    // Voting: the large reasoning model and the medical model. Chat (ASTRO AI): the small fast model.
+    "MODELO_RAZONAMIENTO": "microsoft/phi-4-reasoning-plus",
+    "MODELO_MEDICO": "medgemma-4b-it",
+    "MODELO_CHAT": "google/gemma-3n-e4b",
+    // Simulated one-way Earth link delay for reports. Earth–Mars is about 3 to 21 min one way
+    // (NASA NTRS 20220013418). ACELERACION_DEMO compresses the wait for a live demo (60 = 1 min shown per second).
+    "RETRASO_TIERRA_MINUTOS": "12",
+    "ACELERACION_DEMO": "1",
+    "TEMPERATURA": "0.7",
+    "LIMITE_RONDA_SEGUNDOS": "300"
+  }
+}

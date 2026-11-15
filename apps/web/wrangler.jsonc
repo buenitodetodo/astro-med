@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "astro-med-web",
+  "main": "worker.ts",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Only API calls run the Worker; pages and scripts are served straight from assets.
+    "run_worker_first": ["/v1/*"]
+  },
+  "services": [{ "binding": "API", "service": "astro-med-api" }]
+}
